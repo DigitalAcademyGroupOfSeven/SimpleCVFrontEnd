@@ -5,4 +5,9 @@
     firstName: string;
     lastName: string;
     token: string;
+
+    static describe(instance): Array<string> {
+        let fields = Object.getOwnPropertyNames(instance);
+        return fields.slice(1, fields.length-2)        
+    }
 }
