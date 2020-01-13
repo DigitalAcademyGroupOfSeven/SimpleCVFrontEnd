@@ -43,6 +43,7 @@ module.exports = {
         runtimeChunk: true
     },
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
+        port: 8080
     }
 };

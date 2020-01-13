@@ -7,7 +7,8 @@
     },
     "scripts": {
         "build": "webpack --mode production",
-        "start": "webpack-dev-server --mode development --port ${PORT:-8080} --host 0.0.0.0 --disable-host-check"
+        "dev": "webpack-dev-server --mode development",
+        "start": "webpack-dev-server --mode development --port $PORT --host 0.0.0.0 --disable-host-check"
     },
     "license": "MIT",
     "dependencies": {
