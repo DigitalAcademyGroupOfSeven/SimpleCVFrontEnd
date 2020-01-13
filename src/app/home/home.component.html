@@ -26,5 +26,24 @@
         {{currentUser.email}}
     </div>
 </div>
-
-<button class="btn btn-primary w-25" type="button" (click)="process()"></button>
+<hr/>
+<h2>actions</h2>
+<div class="row">
+    <div class="col-md-6">
+        <p>Upload resume:</p>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <button type="button" class="input-group-text upload" (click)="uploadFileToActivity()">Upload</button>
+            </div>
+            <div class="custom-file">
+                <form>
+                    <input type="file" id="file" class="custom-file-input" (change)="handleFileInput($event.target.files)" />
+                </form>
+                <label class="custom-file-label" for="file">{{SelectedFile}}</label>
+            </div>
+        </div>
+    </div>
+</div>
