@@ -61,8 +61,6 @@ export class HomeComponent implements OnInit, OnDestroy {
                         console.log(error);
                     }
                     );
-                    this.fileToUpload = null;
-                    this.SelectedFile = "Select File";
                 }
                 
                 
