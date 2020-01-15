@@ -46,22 +46,22 @@ export class HomeComponent implements OnInit, OnDestroy {
                 
             }
             
-            handleFileInput(files: FileList) {
+        handleFileInput(files: FileList) {
+            if(files){
                 this.fileToUpload = files.item(0);
                 this.SelectedFile = this.fileToUpload.name;
             }
-            
-            uploadFileToActivity() {
-                this.fileUploadService.postFile(this.fileToUpload, this.currentUser).subscribe(
-                    (data: any) => {
-                        console.log('Success data:' + data);
-                       
-                    },
-                    (error: any) => {
-                        console.log(error);
-                    }
-                    );
+        }
+        
+        uploadFileToActivity() {
+            this.fileUploadService.postFile(this.fileToUpload, this.currentUser).subscribe(
+                (data: any) => {
+                    console.log('Success data:' + data);
+                    
+                },
+                (error: any) => {
+                    console.log(error);
                 }
-                
-                
+                );
             }
+        }
