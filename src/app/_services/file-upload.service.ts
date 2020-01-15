@@ -4,12 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { User } from '@/_models';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileUploadService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private userService: UserService) {}
 
   postFile(fileToUpload: File, currentUser: User): Observable<boolean> {
     if(!fileToUpload) {
@@ -21,13 +22,9 @@ export class FileUploadService {
     formData.append('currentUser', currentUser.username);
     return this.httpClient.post(endpoint, formData).pipe(
       map(result => {
-        const fields = Object.entries(result)
-        console.log(fields)
-        for(var field in fields){
-          console.log(field)
-          currentUser[field] = fields[field]
+        for(var field in result){
+          currentUser[field] = result[field]
         }
-        console.log(result)
         return true
       })
     );

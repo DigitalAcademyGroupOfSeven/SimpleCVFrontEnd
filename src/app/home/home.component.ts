@@ -56,8 +56,19 @@ export class HomeComponent implements OnInit, OnDestroy {
         uploadFileToActivity() {
             this.fileUploadService.postFile(this.fileToUpload, this.currentUser).subscribe(
                 (data: any) => {
-                    console.log('Success data:' + data);
-                    
+                    if(data){
+                        console.log('update user')
+                        this.userService.update(this.currentUser).pipe(first())
+                            .subscribe(
+                                data => {
+                                    this.alertService.success('Registration successful', true);
+                                    this.router.navigate(['/login']);
+                                },
+                                error => {
+                                    this.alertService.error(error);
+                                    this.loading = false;
+                                });
+                    }                
                 },
                 (error: any) => {
                     console.log(error);

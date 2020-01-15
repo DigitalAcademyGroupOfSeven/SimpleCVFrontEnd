@@ -1,29 +1,52 @@
 ﻿<h1>Hi {{currentUser.firstName}}!</h1>
 <p>Welcome to your CV</p>
 
-<div class="row">
-    <div class="col-md-6">
+<div *ngIf="currentUser.firstName" class="row">
+    <div class="col-md-3">
         First Name: 
     </div>
-    <div class="col-md-5">
+    <div class="col-md-9">
         {{currentUser.firstName}}
     </div>
-    <div class="col-md-1"></div>
 </div>
-<div class="row">
-    <div class="col-md-6">
+<div *ngIf="currentUser.lastName" class="row">
+    <div class="col-md-3">
         Last Name: 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-9">
         {{currentUser.lastName}}
     </div>
 </div>
-<div class="row">
-    <div class="col-md-6">
+<div *ngIf="currentUser.email" class="row">
+    <div class="col-md-3">
         Email: 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-9">
         {{currentUser.email}}
+    </div>
+</div>
+<div *ngIf="currentUser.skills" class="row">
+    <div class="col-md-3">
+        Skills: 
+    </div>
+    <div class="col-md-9">
+        {{currentUser.skills.join(', ')}}
+    </div>
+</div>
+<div *ngIf="currentUser.experience" class="row">
+    <div class="col-md-3">
+        Experience: 
+    </div>
+    <div class="col-md-9">
+        {{currentUser.experience.join(', ')}}
+    </div>
+</div>
+<div *ngIf="currentUser.mobile_number" class="row">
+    <div class="col-md-3">
+        Mobile number: 
+    </div>
+    <div class="col-md-9">
+        {{currentUser.mobile_number}}
     </div>
 </div>
 <hr/>
