@@ -16,7 +16,7 @@ export class FileUploadService {
     if(!fileToUpload) {
       return of(false)
     }
-    const endpoint = `http://127.0.0.1:5000/process`;
+    const endpoint = `${config.resumeParserApiUrl}/process`;
     const formData: FormData = new FormData();
     formData.append('fileKey', fileToUpload, fileToUpload.name);
     formData.append('currentUser', currentUser.username);

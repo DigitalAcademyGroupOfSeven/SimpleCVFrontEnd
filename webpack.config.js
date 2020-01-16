@@ -32,7 +32,8 @@ module.exports = {
         new webpack.DefinePlugin({
             // global app config object
             config: JSON.stringify({
-                apiUrl: process.env.BACKEND_URL || 'http://localhost:3000'
+                apiUrl: process.env.BACKEND_URL || 'http://localhost:3000',
+                resumeParserApiUrl: process.env.RESUMEPARSE_API_URL || 'http://localhost:5000'
             })
         })
     ],

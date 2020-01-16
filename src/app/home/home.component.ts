@@ -58,16 +58,15 @@ export class HomeComponent implements OnInit, OnDestroy {
                 (data: any) => {
                     if(data){
                         console.log('update user')
-                        this.userService.update(this.currentUser).pipe(first())
-                            .subscribe(
-                                data => {
-                                    this.alertService.success('Registration successful', true);
-                                    this.router.navigate(['/login']);
-                                },
-                                error => {
-                                    this.alertService.error(error);
-                                    this.loading = false;
-                                });
+                        this.userService.update(this.currentUser).subscribe(
+                            (data: any) => {
+                                console.log(this.currentUser)
+                                console.log('user updated')
+                            },
+                            (error: any) => {
+                                console.log(error);
+                            }
+                            );
                     }                
                 },
                 (error: any) => {
