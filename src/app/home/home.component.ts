@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         private fileUploadService: FileUploadService
         ) {
             this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
+                
                 this.currentUser = user;
                 this.properties = User.describe(this.currentUser);        
             });
@@ -67,7 +68,8 @@ export class HomeComponent implements OnInit, OnDestroy {
                                 console.log(error);
                             }
                             );
-                    }                
+                        localStorage.setItem('currentUser', JSON.stringify(this.currentUser))
+                        }                
                 },
                 (error: any) => {
                     console.log(error);
