@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     currentUserSubscription: Subscription;
     fileToUpload: File = null;
     SelectedFile: string = "Select File";
+    uploadLoading = false;
     
     constructor(
         private authenticationService: AuthenticationService,
@@ -53,7 +54,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
         
         uploadFileToActivity() {
-            this.fileUploadService.postFile(this.fileToUpload, this.currentUser).subscribe(
+            this.uploadLoading = true;
+            this.fileUploadService.postFile(this.fileToUpload, this.currentUser).subscribe(                
                 (data: any) => {
                     if(data){
                         console.log('update user')
@@ -67,7 +69,8 @@ export class HomeComponent implements OnInit, OnDestroy {
                             }
                             );
                         localStorage.setItem('currentUser', JSON.stringify(this.currentUser))
-                        }                
+                        }
+                    this.uploadLoading = false;                
                 },
                 (error: any) => {
                     console.log(error);
