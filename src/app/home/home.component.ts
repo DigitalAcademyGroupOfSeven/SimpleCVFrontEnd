@@ -9,7 +9,6 @@ import { FileUploadService } from '@/_services/file-upload.service';
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent implements OnInit, OnDestroy {
     currentUser: User;
-    properties: Array<string>;
     currentUserSubscription: Subscription;
     fileToUpload: File = null;
     SelectedFile: string = "Select File";
@@ -22,7 +21,6 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
                 
                 this.currentUser = user;
-                this.properties = User.describe(this.currentUser);        
             });
         }
         
