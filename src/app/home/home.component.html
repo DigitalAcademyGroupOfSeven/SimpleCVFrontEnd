@@ -30,7 +30,11 @@
         Skills: 
     </div>
     <div class="col-md-9">
-        {{currentUser.skills.join(', ')}}
+        <ul>
+            <li *ngFor="let skill of currentUser.skills">
+                {{skill}}
+            </li>
+        </ul>
     </div>
 </div>
 <div *ngIf="(currentUser.experience && currentUser.experience.length)" class="row">
@@ -38,7 +42,11 @@
         Experience: 
     </div>
     <div class="col-md-9">
-        {{currentUser.experience.join(', ')}}
+        <ul>
+            <li *ngFor="let xp of currentUser.experience">
+                {{xp}}
+            </li>
+        </ul>
     </div>
 </div>
 <div *ngIf="currentUser.mobile_number" class="row">
