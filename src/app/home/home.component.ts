@@ -9,7 +9,7 @@ import { OrcidService } from '@/_services/orcid.service';
 
 @Component({ 
     templateUrl: 'home.component.html',
-    styles: ['.scrollable { height:150px; overflow-y: scroll; }']
+    styles: ['.scrollable { height:300px; overflow-y: scroll; overflow-x: scroll;}']
 })
 export class HomeComponent implements OnInit, OnDestroy {
     @ViewChild('orcid') orcid: ElementRef;
