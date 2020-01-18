@@ -1,14 +1,20 @@
-﻿import { Component, OnInit, OnDestroy } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 import { User } from '@/_models';
 import { UserService, AuthenticationService } from '@/_services';
 import { FileUploadService } from '@/_services/file-upload.service';
+import { OrcidService } from '@/_services/orcid.service';
 
-@Component({ templateUrl: 'home.component.html' })
+@Component({ 
+    templateUrl: 'home.component.html',
+    styles: ['.scrollable { height:150px; overflow-y: scroll; }']
+})
 export class HomeComponent implements OnInit, OnDestroy {
+    @ViewChild('orcid') orcid: ElementRef;
     currentUser: User;
+    orcidDisplay: string;
     currentUserSubscription: Subscription;
     fileToUpload: File = null;
     SelectedFile: string = "Select File";
@@ -17,7 +23,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     constructor(
         private authenticationService: AuthenticationService,
         private userService: UserService,
-        private fileUploadService: FileUploadService
+        private fileUploadService: FileUploadService,
+        private orcidService: OrcidService
         ) {
             this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
                 
@@ -75,6 +82,19 @@ export class HomeComponent implements OnInit, OnDestroy {
                 (error: any) => {
                     console.log(error);
                 }
+                );
+            }
+
+            getOrcid() {
+                this.orcidService.getById(this.orcid.nativeElement.value).subscribe(
+                    (data: any) => {
+                        this.orcidDisplay = data;
+                        console.log(data)
+                        console.log('orcid success')
+                    },
+                    (error: any) => {
+                        console.log(`error: ${error}`);
+                    }
                 );
             }
         }

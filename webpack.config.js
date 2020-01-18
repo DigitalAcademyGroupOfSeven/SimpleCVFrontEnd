@@ -45,7 +45,6 @@ module.exports = {
     },
     devServer: {
         historyApiFallback: true,
-        port: 8080,
-        public: 'groupofseven-mycv.herokuapp.com'
+        port: 8080
     }
 };
