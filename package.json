@@ -8,7 +8,7 @@
     "scripts": {
         "build": "webpack --mode production",
         "dev": "webpack-dev-server --mode development",
-        "start": "webpack-dev-server --mode development --port $PORT --host 0.0.0.0 --disable-host-check --publicHost http://groupofseven-mycv.herokuapp.com"
+        "start": "webpack-dev-server --mode development --port $PORT --host 0.0.0.0 --disable-host-check --public http://groupofseven-mycv.herokuapp.com"
     },
     "license": "MIT",
     "dependencies": {
