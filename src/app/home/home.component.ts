@@ -9,16 +9,16 @@ import { OrcidService } from '@/_services/orcid.service';
 
 @Component({ 
     templateUrl: 'home.component.html',
-    styles: ['.scrollable { height:300px; overflow-y: scroll; overflow-x: scroll;}']
+    styles: ['.scrollable { height:300px; overflow-y: scroll; }']
 })
 export class HomeComponent implements OnInit, OnDestroy {
     @ViewChild('orcid') orcid: ElementRef;
     currentUser: User;
-    orcidDisplay: string;
     currentUserSubscription: Subscription;
     fileToUpload: File = null;
     SelectedFile: string = "Select File";
     uploadLoading = false;
+    orcidLoading = false;
     
     constructor(
         private authenticationService: AuthenticationService,
@@ -66,16 +66,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 (data: any) => {
                     if(data){
                         console.log('update user')
-                        this.userService.update(this.currentUser).subscribe(
-                            (data: any) => {
-                                console.log(this.currentUser)
-                                console.log('user updated')
-                            },
-                            (error: any) => {
-                                console.log(error);
-                            }
-                            );
-                        localStorage.setItem('currentUser', JSON.stringify(this.currentUser))
+                        this.updateCurrentUser()
                         }
                     this.uploadLoading = false;                
                 },
@@ -86,15 +77,31 @@ export class HomeComponent implements OnInit, OnDestroy {
             }
 
             getOrcid() {
+                this.orcidLoading = true;
                 this.orcidService.getById(this.orcid.nativeElement.value).subscribe(
                     (data: any) => {
-                        this.orcidDisplay = data;
+                        this.currentUser.orcid = data
                         console.log(data)
                         console.log('orcid success')
+                        this.orcidLoading = false
+                        this.updateCurrentUser();
                     },
                     (error: any) => {
                         console.log(`error: ${error}`);
                     }
                 );
+            }
+
+            updateCurrentUser() {
+                this.userService.update(this.currentUser).subscribe(
+                    (data: any) => {
+                        console.log(this.currentUser)
+                        console.log('user updated')
+                    },
+                    (error: any) => {
+                        console.log(error);
+                    }
+                    );
+                localStorage.setItem('currentUser', JSON.stringify(this.currentUser))
             }
         }
