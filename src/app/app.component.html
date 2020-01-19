@@ -2,9 +2,39 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between" *ngIf="currentUser">
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/">Home</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                My CV
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Currect</a>
+                <a class="dropdown-item" href="#">Past</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Help
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Frequently asked questions</a>
+                <a class="dropdown-item" href="#">Contact us</a>
+                <a class="dropdown-item" href="#">Report a bug</a>
+                
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Applications
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Active</a>
+                <a class="dropdown-item" href="#">Past</a>
+                
+            </div>
+        </li>
     </div>
     <div class="navbar-nav">    
-        <p *ngIf="currentUser">Currently signed in as {{currentUser}}</p>        
+        <p class="navbar-text" *ngIf="currentUser">Currently signed in as {{currentUser.username}} - </p>        
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
     </div>
 </nav>
@@ -13,7 +43,7 @@
 <div class="jumbotron">
     <div class="container">
         <div class="row">
-            <div class="col-sm-10 offset-md-1">
+            <div class="col-sm-12">
                 <alert></alert>
                 <router-outlet></router-outlet>
             </div>

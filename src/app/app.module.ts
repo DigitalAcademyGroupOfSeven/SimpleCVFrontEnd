@@ -2,6 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CalendarModule } from '@syncfusion/ej2-angular-calendars';
 
 import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
@@ -18,7 +19,8 @@ import { RegisterComponent } from './register';
         ReactiveFormsModule,
         FormsModule,
         HttpClientModule,
-        routing
+        routing,
+        CalendarModule
     ],
     declarations: [
         AppComponent,

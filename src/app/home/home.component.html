@@ -1,165 +1,189 @@
-﻿<h1>Hi {{currentUser.username}}!</h1>
-<p>Welcome to your CV</p>
+﻿<div class="row">
+    <div class="col-sm-10" style="height:80vh; overflow-y: scroll;">
+        <h1>Your current CV</h1>
+        
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-header mb-4">Personal Information</h2>
+                <div class="row">
+                    <div class="col-md-3">
+                        Name: 
+                    </div>
+                    <div class="col-md-9">
+                        {{currentUser.name}}
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <br/>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-header mb-4">Contact Information</h2>
+                <div class="row">
+                    <div class="col-md-3">
+                        Email: 
+                    </div>
+                    <div class="col-md-9">
+                        {{currentUser.email}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        Mobile number: 
+                    </div>
+                    <div class="col-md-9">
+                        {{currentUser.mobile_number}}
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <br/>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-header mb-4">Skills/experience</h2>
+                <div class="row">
+                    <div class="col-md-3">
+                        Designation: 
+                    </div>
+                    <div class="col-md-9">
+                        <ul>
+                            <li *ngFor="let desig of currentUser.designation">
+                                {{desig}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        Skills: 
+                    </div>
+                    <div class="col-md-9">
+                        <ul>
+                            <li *ngFor="let skill of currentUser.skills">
+                                {{skill}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        Experience: 
+                    </div>
+                    <div class="col-md-9">
+                        <ul>
+                            <li *ngFor="let xp of currentUser.experience">
+                                {{xp}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        Total experience: 
+                    </div>
+                    <div class="col-md-9">
+                        {{currentUser.total_experience}}
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <hr/>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-header mb-4">Education</h2>
+                <div class="row">
+                    <div class="col-md-3">
+                        College/University: 
+                    </div>
+                    <div class="col-md-9">
+                        <ul>
+                            <li *ngFor="let college of currentUser.college_name">
+                                {{college}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        Degree: 
+                    </div>
+                    <div class="col-md-9">
+                        {{currentUser.degree}}
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <hr/>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-header mb-4">ORCID record</h2>
+                <div class="row">
+                    <div class="col-md-12 scrollable">
+                        <pre lang="xml">
+                            {{currentUser.orcid}}
+                        </pre>
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <hr/>
+        <h2>Import your information</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <p>Upload resume:</p>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <img *ngIf="uploadLoading" class="pl-3" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        <button [disabled]="uploadLoading" type="button" class="btn btn-outline-secondary upload" (click)="uploadFileToActivity()">Upload</button>
+                    </div>
+                    <div class="custom-file">
+                        <form>
+                            <input type="file" id="file" class="custom-file-input" (change)="handleFileInput($event.target.files)" />
+                        </form>
+                        <label class="custom-file-label" for="file">{{SelectedFile}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p>ORCID:</p>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <img *ngIf="orcidLoading" class="pl-3" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        <button [disabled]="orcidLoading" type="button" class="btn btn-outline-secondary" (click)="getOrcid()">Upload</button>
+                        <input type="text" #orcid class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="row">
+            <div class="col-sm-12">    
+                <h2>Calendar</h2>
+                <ejs-calendar id=calendar></ejs-calendar>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card" style="width: 150%;">
+                    <div class="card-header">Upcoming:</div>
+                    <ul class="list-group list-group-flush" style="list-style-type:circle;">
+                        <li class="list-group-item">2020-01-25: NSERC application</li>
+                        <li class="list-group-item">2020-02-15: SSHRC application</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<div class="card">
-    <div class="card-body">
-        <h2 class="card-header mb-4">Personal Information</h2>
-        <div class="row">
-            <div class="col-md-3">
-                Name: 
-            </div>
-            <div class="col-md-9">
-                {{currentUser.name}}
-            </div>
-        </div>
-    </div>
-    
-</div>
-<br/>
-<div class="card">
-    <div class="card-body">
-        <h2 class="card-header mb-4">Contact Information</h2>
-        <div class="row">
-            <div class="col-md-3">
-                Email: 
-            </div>
-            <div class="col-md-9">
-                {{currentUser.email}}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                Mobile number: 
-            </div>
-            <div class="col-md-9">
-                {{currentUser.mobile_number}}
-            </div>
-        </div>
-    </div>    
-</div>
-<br/>
-<div class="card">
-    <div class="card-body">
-        <h2 class="card-header mb-4">Skills/experience</h2>
-        <div class="row">
-            <div class="col-md-3">
-                Designation: 
-            </div>
-            <div class="col-md-9">
-                <ul>
-                    <li *ngFor="let desig of currentUser.designation">
-                        {{desig}}
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                Skills: 
-            </div>
-            <div class="col-md-9">
-                <ul>
-                    <li *ngFor="let skill of currentUser.skills">
-                        {{skill}}
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                Experience: 
-            </div>
-            <div class="col-md-9">
-                <ul>
-                    <li *ngFor="let xp of currentUser.experience">
-                        {{xp}}
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                Total experience: 
-            </div>
-            <div class="col-md-9">
-                {{currentUser.total_experience}}
-            </div>
-        </div>
-    </div>    
-</div>
-<hr/>
-<div class="card">
-    <div class="card-body">
-        <h2 class="card-header mb-4">Education</h2>
-        <div class="row">
-            <div class="col-md-3">
-                College/University: 
-            </div>
-            <div class="col-md-9">
-                <ul>
-                    <li *ngFor="let college of currentUser.college_name">
-                        {{college}}
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                Degree: 
-            </div>
-            <div class="col-md-9">
-                {{currentUser.degree}}
-            </div>
-        </div>
-    </div>    
-</div>
-<hr/>
-<div class="card">
-    <div class="card-body">
-        <h2 class="card-header mb-4">ORCID record</h2>
-        <div class="row">
-            <div class="col-md-12 scrollable">
-                <pre lang="xml">
-                    {{currentUser.orcid}}
-                </pre>
-            </div>
-        </div>
-    </div>    
-</div>
-<hr/>
-<h2>Import your information</h2>
-<div class="row">
-    <div class="col-md-6">
-        <p>Upload resume:</p>
-    </div>
-    
-    <div class="col-md-6">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <img *ngIf="uploadLoading" class="pl-3" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                <button [disabled]="uploadLoading" type="button" class="btn btn-outline-secondary upload" (click)="uploadFileToActivity()">Upload</button>
-            </div>
-            <div class="custom-file">
-                <form>
-                    <input type="file" id="file" class="custom-file-input" (change)="handleFileInput($event.target.files)" />
-                </form>
-                <label class="custom-file-label" for="file">{{SelectedFile}}</label>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <p>ORCID:</p>
-    </div>
-    
-    <div class="col-md-6">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <img *ngIf="orcidLoading" class="pl-3" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                <button [disabled]="orcidLoading" type="button" class="btn btn-outline-secondary" (click)="getOrcid()">Upload</button>
-                <input type="text" #orcid class="form-control" />
-            </div>
-        </div>
-    </div>
-</div>
+
