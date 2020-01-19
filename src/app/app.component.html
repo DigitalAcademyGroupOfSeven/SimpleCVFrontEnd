@@ -1,7 +1,10 @@
 ﻿<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+<nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between" *ngIf="currentUser">
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/">Home</a>
+    </div>
+    <div class="navbar-nav">    
+        <p *ngIf="currentUser">Currently signed in as {{currentUser}}</p>        
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
     </div>
 </nav>
